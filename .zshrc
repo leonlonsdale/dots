@@ -1,5 +1,4 @@
 # Created by newuser for 5.9
-export STARSHIP_CONFIG=~/.config/starship/starship.toml
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"

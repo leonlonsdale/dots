@@ -19,8 +19,8 @@ read_only = " 🔒"
 style = "cyan"
 
 [git_branch]
-symbol = "git"
-format = '[$symbol\([$branch](red)\)](blue): '
+# format = '[\[ [$branch](red)\]](blue) '
+format = '[\[[$branch](red)\]](blue) '
 
 [git_status]
 style = "purple"

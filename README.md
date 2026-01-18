@@ -93,3 +93,12 @@ Now we want to symlink the runtime. I use `stow` to manage dotfiles, in case you
 rm -rf ~/dots/.config/helix/runtime && ln -s "$PWD/runtime" ~/dots/.config/helix/runtime
 cd ~/dots && stow .
 ```
+
+## Install dev tools
+
+Helix uses LSPs etc, out of the box. You don't need a plugin like Mason to manage them, but you do need to install them. Since Homebrew is often more up to date than most other package managers, it's a very simply and quick way to grab them
+
+```bash
+brew install typescript biome pgformatter prettier sql-language-server tailwindcss-language-server typescript-language-server vscode-langservers-extracted oven-sh/bun/bun node go goimports golangci-lint golangci-lint-langserver gopls python uv basedpyright ruff marksman stylua yaml-language-server
+npm i -g @olrtg/emmet-language-server
+```

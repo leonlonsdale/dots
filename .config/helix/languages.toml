@@ -1,0 +1,214 @@
+
+# =============================================================================
+# Snippets
+# =============================================================================
+
+
+[language-server.scls]
+command = "simple-completion-language-server"
+
+[language-server.scls.config]
+feature_words = false                # enable completion by word
+feature_snippets = true              # enable snippets
+snippets_first = true                # completions will return before snippets by default
+snippets_inline_by_word_tail = false # suggest snippets by WORD tail, for example text `xsq|` become `x^2|` when snippet `sq` has body `^2`
+feature_unicode_input = false        # enable "unicode input"
+feature_paths = false                # enable path completion
+feature_citations = false            # enable citation completion (only on `citation` feature enabled)
+
+# =============================================================================
+# Golang 🐹
+# =============================================================================
+
+[[language]]
+name = "go"
+roots = ["go.work", "go.mod"]
+auto-format = true
+formatter = ["goimports"]
+comment-token = "//"
+language-servers = [ "gopls", "golangci-lint-lsp" ]
+# config = { "gopls" = { "staticcheck" = true }}
+
+[language-server.golangci-lint-lsp]
+command = "golangci-lint-langserver"
+
+# [language-server.golangci-lint-lsp.config]
+# command = ["golangci-lint", "run", "--out-format", "json", "--issues-exit-code=1"]
+
+[[language]]
+name = "templ"
+auto-format = true
+language-servers = ['templ', 'vscode-html-language-server', 'tailwindcss-ls', "emmet-lsp"]
+
+# =============================================================================
+# Python 🐍
+# =============================================================================
+ 
+[language-server.basedpyright]
+except-features = ["format", "code-action"]
+
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
+[language-server.basedpyright.config.basedpyright.analysis]
+autoSearchPaths = true
+typeCheckingMode = "standard"
+diagnosticMode = "openFilesOnly"
+autoImportCompletions = true
+
+[language-server.ruff.config.settings]
+# logLevel = "debug"
+configuration = "~/.config/ruff/ruff.toml"
+
+[[language]]
+name = "python"
+language-id = "python"
+roots = ["pyproject.toml", "poetry.lock", ".git", ".venv/"]
+language-servers = ["ruff", "basedpyright" ]
+auto-format = true
+file-types = ["py", "ipynb"]
+# shebangs = ["python"]
+
+# =============================================================================
+# Frontend 🌐
+# =============================================================================
+ 
+[language-server]
+emmet-lsp = { command = "emmet-language-server", args = [ "--stdio" ]}
+biome = { command = "biome", args = ["lsp-proxy"] }
+tailwindcss = { command = "tailwind-css-language-server", args = ["--stdio"] }
+
+[language-server.eslint]
+command = "vscode-eslint-language-server"
+args = ["--stdio"]
+
+[language-server.eslint.config]
+codeActionsOnSave = { mode = "all", "source.fixAll.eslint" = true }
+format = { enable = true }
+nodePath = ""
+quiet = false
+rulesCustomizations = []
+run = "onType"
+validate = "on"
+experimental = {}
+problems = { shortenToSingleLine = false }
+
+[language-server.eslint.config.codeAction]
+disableRuleComment = { enable = true, location = "separateLine" }
+showDocumentation = { enable = false }
+
+[language-server.vscode-css-language-server.config]
+css = { validate = { enable = true } }
+scss = { validate = { enable = true } }
+less = { validate = { enable = true } }
+provideFormatter = true
+
+[[language]]
+name = "html"
+language-servers = [ "vscode-html-language-server", {name = "superhtml", except-features = ["format"] }, "emmet-lsp", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+auto-format = true
+
+[[language]]
+name = "css"
+language-servers = [ "vscode-css-language-server", "emmet-lsp", "tailwindcss-ls" ]
+formatter = { command = 'prettier', args = ["--parser", "css"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+language-servers = [ "scls", { name = "typescript-language-server", except-features = ["format"]}, "biome"]
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "typescript"
+language-servers = [ "scls", { name = "typescript-language-server", except-features = ["format"]}, "biome"]
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "jsx"
+language-id = "javascriptreact"
+file-types = ["jsx"]
+language-servers = [ "scls", { name = "typescript-language-server", except-features = ["format"]}, "biome","emmet-lsp", "tailwindcss-ls"]
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+block-comment-tokens = { start = "{*/", end = "/*}"}
+auto-format = true
+
+[[language]]
+name = "tsx"
+language-id = "typescriptreact"
+file-types = ["tsx"]
+language-servers = [ "scls", { name = "typescript-language-server", except-features = ["format"]}, "biome", "emmet-lsp", "tailwindcss-ls"]
+# formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+block-comment-tokens = { start = "{*/", end = "/*}"}
+auto-format = true
+
+# =============================================================================
+# JSON 
+# =============================================================================
+
+[language-server.vscode-json]
+command = "vscode-json-language-server"
+args = ["--stdio"]
+
+[language-server.vscode-json.config]
+json = { validate = { enable = true }, format = { enable = true } }
+provideFormatter = true
+
+[[language]]
+name = "json"
+language-servers = [ { name = "vscode-json", except-features = ["format"]}, "biome"]
+# formatter = { command = 'prettier', args = ["--parser", "json"] }
+
+# =============================================================================
+# Database 💽
+# =============================================================================
+
+[[language]]
+name = "prisma"
+language-servers = ["prisma-language-server"]
+auto-format = true
+
+[language-server.sql-language-server]
+command = "sql-language-server"
+args = ["up", "--method", "stdio"]
+
+[[language]]
+name = "sql"
+formatter = { command = "pg_format", args = ["-"] }
+auto-format = true
+
+# =============================================================================
+# Markdown 🎯
+# =============================================================================
+ 
+[[language]]
+name = "markdown"
+text-width = 120
+soft-wrap.enable = true
+soft-wrap.wrap-at-text-width = true
+indent = { tab-width = 4, unit = "    " }
+language-servers = ["marksman"]
+formatter = { command = 'prettier', args = [
+  "--parser",
+  "markdown",
+  "--prose-wrap",
+  "never", # <always|never|preserve>
+] }
+auto-format = true
+
+# =============================================================================
+# Other
+# =============================================================================
+
+[[language]]
+name = "toml"
+formatter = { command = "taplo", args = ["fmt", "-"] }
+
+[[language]]
+name = "lua"
+formatter = { command = "stylua", args = [ "-" ] }
+auto-format = true

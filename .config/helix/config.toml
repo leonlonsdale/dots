@@ -1,0 +1,81 @@
+# =============================================================================
+# Theme
+# =============================================================================
+
+theme = "theme"
+
+# =============================================================================
+# Settings
+# =============================================================================
+
+[editor]
+true-color = true
+undercurl = true
+color-modes = true
+line-number = "relative"
+cursorline = true
+popup-border = "all"
+completion-replace = true
+rulers = [80]
+indent-heuristic = "tree-sitter"
+end-of-line-diagnostics = "hint"
+rainbow-brackets = true
+
+[editor.statusline]
+left = ["mode", "file-base-name", "file-modification-indicator", "spinner"]
+center = ["workspace-diagnostics"]
+right = ["version-control"]
+separator = "●"
+mode.normal = "N"
+mode.insert = "I"
+mode.select = "S"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[editor.file-picker]
+hidden = false
+
+[editor.indent-guides]
+render = true
+skip-levels = 1
+character = "▏"
+
+[editor.soft-wrap]
+enable = true
+
+[editor.inline-diagnostics]
+cursor-line = "hint"
+# other-lines = "hint"
+max-wrap = 10
+max-diagnostics = 5
+prefix-len = 1
+
+# =============================================================================
+# Keymaps
+# =============================================================================
+
+[keys.normal]
+esc = ["collapse_selection", "keep_primary_selection"]
+"S-up" = ["extend_to_line_bounds", "delete_selection", "move_line_up", "paste_before"]
+"S-down" = ["extend_to_line_bounds", "delete_selection", "paste_after"]
+G="goto_file_end"
+"{" = ["goto_next_paragraph"]
+"}" = ["goto_prev_paragraph"]
+
+[keys.normal.space]
+q = ":quit"
+w = ":write"
+"*" = ["move_char_right", "move_prev_word_start", "move_next_word_end", "search_selection", "search_next"]
+
+space.r = ":config-reload"
+space.l = ":lsp-restart"
+space.q = ":write-quit-all"
+t.i = ":toggle lsp.display-inlay-hints"
+
+
+[keys.select]
+"{" = ["goto_next_paragraph"]
+"}" = ["goto_prev_paragraph"]

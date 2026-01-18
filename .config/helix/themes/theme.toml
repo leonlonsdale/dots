@@ -1,0 +1,19 @@
+# inherits = "autumn"
+# inherits = "aura-dark"
+# inherits = "tokyonight_storm"
+# inherits = "github_dark"
+# inherits = "gruvbox-material"
+inherits = "catppuccin_mocha"
+# inherits = "kanagawa-dragon"
+
+"ui.background" = {}
+"ui.gutter" = {}
+"ui.statusline" = {}
+"ui.linenr" = { }
+
+# Aura only
+# "ui.cursorline" = { bg = "accent33"}
+
+# Autumn only
+
+# "ui.linenr" = { fg = "my_gray5" }
